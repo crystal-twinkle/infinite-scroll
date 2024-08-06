@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useState} from 'react'
-import './App.css'
 import FlickrApi from './api/api';
+import {IPhoto} from './models/api';
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -8,10 +8,19 @@ function App() {
 
   const fetch = useCallback(
     async () => {
+
       try {
-        const data = await FlickrApi.getALL();
-        console.log(data)
-      } catch (e) {
+        const data  = await FlickrApi.getData();
+
+          const images = data.photos.photo.map((photo: IPhoto) => ({
+            id: photo.id,
+            title: photo.title,
+            src: `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_w.jpg`,
+            largeSrc: `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
+          }));
+
+          console.log(images);
+      } catch (error) {
         setError(true);
       } finally {
         setIsLoading(false);
@@ -22,7 +31,7 @@ function App() {
 
   useEffect(() => {
     fetch();
-  }, []);
+  }, [fetch]);
 
   return (
     <>
