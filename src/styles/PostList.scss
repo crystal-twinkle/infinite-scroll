@@ -1,0 +1,30 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  //grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  //grid-auto-rows: 160px;
+  gap: 15px;
+}
+
+.list__element {
+  text-align: center;
+  border-radius: 24px;
+}
+
+//.list__name {
+//  margin: 5px auto 0;
+//  font-weight: bolder;
+//}
+//
+//.btn-detail {
+//  position: relative;
+//  z-index: 6;
+//  border: none;
+//  padding: 5px;
+//  font-size: 12px;
+//  font-weight: bold;
+//  letter-spacing: 2px;
+//  border-radius: 14px;
+//  background-color: #136891;
+//  color: #e5dfdf;
+//}

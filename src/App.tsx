@@ -1,8 +1,11 @@
-import {useCallback, useEffect, useState} from 'react'
+import {useCallback, useContext, useEffect, useState} from 'react'
 import FlickrApi from './api/api';
-import {IPhoto} from './models/api';
+import PostList from './components/PostList';
+import Loading from './components/Loading';
+import {AppContext} from './contexts/app-context';
 
 function App() {
+  const { setImages } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -10,23 +13,18 @@ function App() {
     async () => {
 
       try {
-        const data  = await FlickrApi.getData();
+        const data = await FlickrApi.getData();
+        console.log(data)
 
-          const images = data.photos.photo.map((photo: IPhoto) => ({
-            id: photo.id,
-            title: photo.title,
-            src: `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_w.jpg`,
-            largeSrc: `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
-          }));
+        setImages(data.photos.photo);
 
-          console.log(images);
       } catch (error) {
         setError(true);
       } finally {
         setIsLoading(false);
       }
     },
-    []
+    [setImages]
   );
 
   useEffect(() => {
@@ -34,8 +32,17 @@ function App() {
   }, [fetch]);
 
   return (
-    <>
-    </>
+    <div className="main-page">
+      <div className="main">
+        {!isLoading ? (
+          <>
+            <PostList/>
+          </>
+        ) : (
+          <Loading />
+        )}
+      </div>
+    </div>
   )
 }
 
