@@ -5,6 +5,7 @@ import PostList from '../components/PostList';
 import AppProvider, { AppContext, IAppContext } from '../contexts/app-context';
 import { IImage } from '../models/api.models';
 import { MemoryRouter } from 'react-router-dom';
+import {IPhoto} from '../models/common';
 
 const images: IImage[] = [
   {
@@ -21,13 +22,12 @@ const images: IImage[] = [
   },
 ];
 
-const favorites: IImage[] = [
+const favorites: IPhoto[] = [
   {
     id: '1',
     title: 'Mountain View',
-    server: '65535',
-    secret: 'abcd1234',
-  },
+    src: 'sample.jpg',
+  }
 ];
 
 const appProv = {
@@ -43,7 +43,7 @@ const PostListWrap = () => {
   return (
     <MemoryRouter>
       <AppProvider>
-        <AppContext.Provider value={appProv }>
+        <AppContext.Provider value={appProv}>
           <PostList />
         </AppContext.Provider>
       </AppProvider>
