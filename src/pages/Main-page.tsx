@@ -1,10 +1,10 @@
 import {useCallback, useContext, useEffect, useRef, useState} from 'react';
-import FlickrApi from './api/api';
-import PostList from './components/PostList';
-import Loading from './components/Loading';
-import {AppContext} from './contexts/app-context';
+import FlickrApi from '../api/api';
+import PostList from '../components/PostList';
+import Loading from '../components/Loading';
+import {AppContext} from '../contexts/app-context';
 
-function App() {
+function MainPage() {
   const {setImages, page, setPage} = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -51,15 +51,11 @@ function App() {
 
   return (
     <div className="main-page">
-      <div className="wrapper">
-        <div className="main">
-          <PostList/>
-          {isLoading && <Loading/>}
-          {error && <p>Error fetching data.</p>}
-        </div>
-      </div>
+      <PostList/>
+      {isLoading && <Loading/>}
+      {error && <p>Error fetching data.</p>}
     </div>
   );
 }
 
-export default App;
+export default MainPage;

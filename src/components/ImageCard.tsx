@@ -1,19 +1,20 @@
-import {useEffect, useRef, useState} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
 import '../styles/ImageCard.scss';
+import {AppContext} from '../contexts/app-context';
+import {IPhoto} from '../models/common';
 
 interface IImageCardProps {
-  id: string;
-  title: string;
-  src: string;
-  largeSrc?: string;
+  photo: {
+    id: string;
+    title: string;
+    src: string;
+    largeSrc?: string;
+  }
 }
 
-const ImageCard = ({id, title, src}: IImageCardProps) => {
+const ImageCard = ({photo}: IImageCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [favorites, setFavorites] = useState<string[]>(() => {
-    const saved = localStorage.getItem('favorites');
-    return saved ? JSON.parse(saved) : [];
-  });
+  const {favorites, setFavorites} = useContext(AppContext);
   const divRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -33,23 +34,22 @@ const ImageCard = ({id, title, src}: IImageCardProps) => {
       });
     });
 
-
     if (divRef.current) {
       observer.observe(divRef.current);
     }
-
 
     return () => {
       observer.disconnect();
     };
   }, []);
 
+  const handleFavorite = (photo: IPhoto) => {
+    setFavorites((prev: IPhoto[]) => {
+      const isFavorite = prev.some((fav) => fav.id === photo.id);
+      const newFavorites: IPhoto[] = isFavorite
+        ? prev.filter((fav) => fav.id !== photo.id)
+        : [...prev, photo];
 
-  const handleFavorite = (id: string) => {
-    setFavorites(prev => {
-      const newFavorites = prev.includes(id)
-        ? prev.filter(favId => favId !== id)
-        : [...prev, id];
       localStorage.setItem('favorites', JSON.stringify(newFavorites));
       return newFavorites;
     });
@@ -66,19 +66,21 @@ const ImageCard = ({id, title, src}: IImageCardProps) => {
           <div
             ref={divRef}
             className="image"
-            data-src={`url(${src})`}
+            data-src={`url(${photo.src})`}
           >
           </div>
 
           {isHovered && (
             <figcaption className="image-overlay">
               <div className="image-hover">
-                <p className="image__title text-right">{title}</p>
+                <p className="image__title text-right">{photo.title}</p>
                 <button
                   className="btn-favorite"
-                  onClick={() => handleFavorite(id)}
+                  onClick={() => handleFavorite(photo)}
                 >
-                  {favorites.includes(id) ? 'Unfavorite' : 'Favorite'}
+                  {favorites.some((fav) => fav.id === photo.id)
+                    ? 'Unfavorite'
+                    : 'Favorite'}
                 </button>
               </div>
             </figcaption>

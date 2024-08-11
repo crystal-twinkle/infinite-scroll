@@ -41,15 +41,11 @@
 
   .btn-favorite {
     background-color: transparent;
-    color: $primary-color;
-    border: 1px solid $primary-color;
-    letter-spacing: 1px;
   }
 
   .btn-favorite:hover {
-    background: darken(rgba(49, 49, 49, 0.19), 3%);
+    @include background-darken(rgba(49, 49, 49, 0.19));
     text-shadow: -1px -1px 0 lighten($primary-color, 9.5%);
-    transition: all 250ms linear;
   }
 
 }

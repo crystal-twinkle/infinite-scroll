@@ -12,19 +12,30 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
   color: $primary-color;
   box-sizing: border-box;
 }
 
 .main {
   width: 100vw;
+  min-height: 100vh;
 }
 
 .wrapper {
   max-width: 1920px;
   margin: auto;
   width: 100%;
+}
+
+.header {
+  @include flex-center;
+  gap: 1rem;
+  padding: 1.5rem 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
 }
 
 button {
@@ -35,4 +46,20 @@ button {
   font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;
+  color: $primary-color;
+  border: 1px solid $primary-color;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background: darken(rgba(49, 49, 49, 0.19), 3%);
+  transition: all 250ms linear;
+}
+
+.btn-header {
+  background-color: #8f43ec;
+}
+
+.btn-header:hover {
+  @include background-darken(rgb(113, 72, 161));
 }

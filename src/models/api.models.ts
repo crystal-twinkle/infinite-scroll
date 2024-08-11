@@ -4,6 +4,7 @@ export interface IImage {
   secret: string;
   server: string;
   title: string;
+  url_m:string;
 }
 
 export interface IData {

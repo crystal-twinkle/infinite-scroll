@@ -13,7 +13,7 @@ const PostList = () => {
     id: image.id,
     title: image.title,
     src: `https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_w.jpg`,
-    largeSrc: `https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_b.jpg`,
+    largeSrc: `https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_b.jpg`
   }));
 
   return (
@@ -21,9 +21,7 @@ const PostList = () => {
         {photos.map((photo: IPhoto) => (
           <div className="list__element" key={photo.id}>
             <ImageCard
-              id={photo.id}
-              title={photo.title}
-              src={photo.src}
+              photo={photo}
             />
           </div>
         ))}

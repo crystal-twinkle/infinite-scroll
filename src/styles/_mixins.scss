@@ -16,3 +16,7 @@
 @mixin responsive-width($size) {
   width: $size;
 }
+
+@mixin background-darken($color) {
+  background: darken($color, 3%);
+}
