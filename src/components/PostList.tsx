@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import {useContext} from 'react';
 import '../styles/PostList.scss';
 import {IPhoto} from '../models/api';
 import {AppContext} from '../contexts/app-context';
@@ -19,7 +19,7 @@ const PostList = () => {
     <div>
       <div className="list">
         {photos.map((image: IImage) => (
-          <div className="list__element" key={image.id}>
+          <div className="list__element"  key={image.id}>
               <img src={image.src} alt="front" />
           </div>
         ))}
