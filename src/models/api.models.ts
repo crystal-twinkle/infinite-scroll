@@ -1,10 +1,10 @@
 export interface IImage {
   id: string;
-  owner: string;
+  owner?: string;
   secret: string;
   server: string;
   title: string;
-  url_m:string;
+  url_m?:string;
 }
 
 export interface IData {

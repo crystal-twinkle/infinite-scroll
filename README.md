@@ -2,6 +2,8 @@
 
 A simple React application to display images from Flickr with infinite scroll and the ability to favorite images.
 
+[Deploy](https://crystal-infinite-scroll.netlify.app/)
+
 ## Features
 
 - Infinite scroll to load more images
