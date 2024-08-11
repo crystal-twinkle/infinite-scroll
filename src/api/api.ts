@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {IData} from '../models/api';
+import {IData} from '../models/api.models';
 
 const apiKey = import.meta.env.VITE_API_KEY;
 

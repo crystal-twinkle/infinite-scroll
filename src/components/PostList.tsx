@@ -1,6 +1,6 @@
 import {useContext} from 'react';
 import '../styles/PostList.scss';
-import {IImage} from '../models/api';
+import {IImage} from '../models/api.models';
 import {AppContext} from '../contexts/app-context';
 import {IPhoto} from '../models/common';
 import ImageCard from './ImageCard';

@@ -1,0 +1,3 @@
+# Ignore test files and folders
+src/__tests__/
+

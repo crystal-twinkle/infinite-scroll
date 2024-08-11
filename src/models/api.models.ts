@@ -1,6 +1,5 @@
 export interface IImage {
   id: string;
-  farm: number;
   owner: string;
   secret: string;
   server: string;

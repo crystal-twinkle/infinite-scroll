@@ -4,7 +4,7 @@ import React, {
   useState,
   useMemo,
 } from 'react';
-import {IImage} from '../models/api';
+import {IImage} from '../models/api.models';
 
 export interface IAppContext {
   images: IImage[];
