@@ -15,6 +15,7 @@ const ImageCard = ({id, title, src}: IImageCardProps) => {
     return saved ? JSON.parse(saved) : [];
   });
 
+
   const handleFavorite = (id: string) => {
     setFavorites(prev => {
       const newFavorites = prev.includes(id)
