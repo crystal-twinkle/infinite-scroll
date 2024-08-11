@@ -5,10 +5,9 @@ import {IPhoto} from '../models/common';
 
 const Favorites = () => {
   const {favorites} = useContext(AppContext);
-  console.log(favorites)
+
   return (
     <div className="list">
-      <h2>Favorites</h2>
       {favorites.map((image: IPhoto) => (
         <div className="list__element" key={image.id}>
           <ImageCard photo={image}/>

@@ -46,8 +46,6 @@ button {
   font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;
-  color: $primary-color;
-  border: 1px solid $primary-color;
   letter-spacing: 1px;
 }
 
@@ -58,8 +56,22 @@ button:hover {
 
 .btn-header {
   background-color: #8f43ec;
+  color: $primary-color;
+  border: 1px solid black;
 }
 
 .btn-header:hover {
-  @include background-darken(rgb(113, 72, 161));
+  @include background-darken(rgb(106, 64, 154));
 }
+
+.btn-header.active {
+  background-color: #8400ff;
+  color: black;
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+  }
+}
+

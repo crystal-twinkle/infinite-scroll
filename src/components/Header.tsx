@@ -1,17 +1,19 @@
 import React from 'react';
-import {RouterPage} from '../router';
-import {Link} from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { RouterPage } from '../router';
 
 const Header = () => {
+  const location = useLocation();
+
   return (
     <header className='header'>
-      <button className='btn-header'>
+      <button className={`btn-header ${location.pathname === RouterPage.MAIN ? 'active' : ''}`}>
         <Link to={RouterPage.MAIN} className="header__link">
           Main
         </Link>
       </button>
-      <button className='btn-header'>
-        <Link to={RouterPage.FAVORITE}>
+      <button className={`btn-header ${location.pathname === RouterPage.FAVORITE ? 'active' : ''}`}>
+        <Link to={RouterPage.FAVORITE} className="header__link">
           Favorite
         </Link>
       </button>
