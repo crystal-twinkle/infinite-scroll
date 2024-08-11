@@ -8,3 +8,11 @@
   display: flex;
   justify-content: space-between;
 }
+
+@mixin responsive-grid-columns($size) {
+  grid-template-columns: repeat(auto-fit, minmax($size, 1fr));
+}
+
+@mixin responsive-width($size) {
+  width: $size;
+}

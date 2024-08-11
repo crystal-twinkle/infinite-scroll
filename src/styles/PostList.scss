@@ -1,12 +1,26 @@
+@import 'function';
+
 .list {
   align-items: start;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(get-element-width(default), 1fr));
   padding: 40px;
   gap: 2rem;
-  width: 100%;
 }
 
 .list__element {
-  width: 400px;
+  width: get-element-width(default);
 }
+
+@each $breakpoint, $width in $element-widths {
+  @media (max-width: $breakpoint) {
+    .list {
+      grid-template-columns: repeat(auto-fit, minmax(get-element-width($breakpoint), 1fr));
+    }
+
+    .list__element {
+      width: get-element-width($breakpoint);
+    }
+  }
+}
+

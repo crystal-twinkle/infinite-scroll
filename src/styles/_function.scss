@@ -1,0 +1,19 @@
+$element-widths: (
+        1200px: 320px,
+        768px: 300px,
+        default: 400px
+);
+
+$element-height: (
+        1200px: 300px,
+        768px: 270px,
+        default: 350px
+);
+
+@function get-element-width($breakpoint) {
+  @return map-get($element-widths, $breakpoint) or map-get($element-widths, default);
+}
+
+@function get-element-height($breakpoint) {
+  @return map-get($element-widths, $breakpoint) or map-get($element-widths, default);
+}

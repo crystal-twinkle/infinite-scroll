@@ -1,5 +1,6 @@
 @import 'mixins';
 @import 'variables';
+@import 'function';
 
 .image__card {
   display: block;
@@ -12,8 +13,8 @@
 
   .image {
     border-radius: 10px;
-    width: 400px;
-    height: 270px;
+    width: get-element-width(default);
+    height: get-element-height(default);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -61,3 +62,16 @@
 .fade {
   animation: fadeIn 1s ease-in-out;
 }
+
+
+@each $breakpoint, $width in $element-widths {
+  @media (max-width: $breakpoint) {
+    .image__card {
+      .image {
+        width: get-element-width($breakpoint);
+        height: get-element-height($breakpoint);
+      }
+    }
+  }
+}
+
