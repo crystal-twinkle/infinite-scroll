@@ -57,6 +57,7 @@ const ImageCard = ({photo}: IImageCardProps) => {
 
   return (
     <div
+      data-testid="image"
       className="image"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

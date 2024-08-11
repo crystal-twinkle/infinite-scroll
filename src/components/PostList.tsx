@@ -19,7 +19,7 @@ const PostList = () => {
   return (
       <div className="list">
         {photos.map((photo: IPhoto) => (
-          <div className="list__element" key={photo.id}>
+          <div className="list__element" key={photo.id} data-testid="image-element">
             <ImageCard
               photo={photo}
             />
