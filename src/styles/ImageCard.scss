@@ -1,0 +1,42 @@
+@import 'mixins';
+@import 'variables';
+
+.image__card {
+  display: block;
+  margin: 0;
+  width: 100%;
+
+  .image__item {
+    position: relative;
+  }
+
+  .image {
+    width: 100%;
+  }
+
+}
+
+.image-overlay {
+  position: absolute;
+  background-color: rgba(47, 46, 46, 0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  @include flex-center;
+
+  .image-hover {
+    @include flex-center;
+    flex-direction: column;
+    gap: 1rem;
+    width: 70%;
+    margin: auto;
+  }
+
+  .btn-favorite {
+    background-color: transparent;
+    color: $primary-color;
+    border: 1px solid $primary-color;
+  }
+
+}

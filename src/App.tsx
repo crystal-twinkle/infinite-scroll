@@ -51,10 +51,12 @@ function App() {
 
   return (
     <div className="main-page">
-      <div className="main">
-        <PostList/>
-        {isLoading && <Loading/>}
-        {error && <p>Error fetching data.</p>}
+      <div className="wrapper">
+        <div className="main">
+          <PostList/>
+          {isLoading && <Loading/>}
+          {error && <p>Error fetching data.</p>}
+        </div>
       </div>
     </div>
   );
