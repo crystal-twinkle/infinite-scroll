@@ -1,4 +1,4 @@
-export interface IImage {
+export interface IPhoto {
   id: string,
   title: string,
   src: string,

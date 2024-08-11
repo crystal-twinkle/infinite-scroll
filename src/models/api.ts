@@ -1,4 +1,4 @@
-export interface IPhoto {
+export interface IImage {
   id: string;
   farm: number;
   owner: string;
@@ -12,7 +12,7 @@ export interface IData {
     page: number;
     pages: number;
     perpage: number;
-    photo: IPhoto[];
+    photo: IImage[];
     total: number;
   };
   stat: string;

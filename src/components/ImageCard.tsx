@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import '../styles/ImageCard.scss';
 
 interface IImageCardProps {
@@ -14,6 +14,35 @@ const ImageCard = ({id, title, src}: IImageCardProps) => {
     const saved = localStorage.getItem('favorites');
     return saved ? JSON.parse(saved) : [];
   });
+  const divRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const div = entry.target as HTMLDivElement;
+          const dataSrc = div.getAttribute('data-src');
+
+          if (dataSrc) {
+            div.style.backgroundImage = dataSrc;
+            div.classList.add('fade');
+          }
+
+          observer.unobserve(div);
+        }
+      });
+    });
+
+
+    if (divRef.current) {
+      observer.observe(divRef.current);
+    }
+
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
 
   const handleFavorite = (id: string) => {
@@ -34,12 +63,13 @@ const ImageCard = ({id, title, src}: IImageCardProps) => {
     >
       <figure className="image__card">
         <div className="image__item">
-          <img
-            src={src}
-            alt={title}
-            loading="lazy"
+          <div
+            ref={divRef}
             className="image"
-          />
+            data-src={`url(${src})`}
+          >
+          </div>
+
           {isHovered && (
             <figcaption className="image-overlay">
               <div className="image-hover">

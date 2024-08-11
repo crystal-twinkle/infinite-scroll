@@ -1,55 +1,33 @@
-import {useContext, useEffect} from 'react';
+import {useContext} from 'react';
 import '../styles/PostList.scss';
-import {IPhoto} from '../models/api';
+import {IImage} from '../models/api';
 import {AppContext} from '../contexts/app-context';
-import {IImage} from '../models/common';
+import {IPhoto} from '../models/common';
 import ImageCard from './ImageCard';
 
 
 const PostList = () => {
   const {images} = useContext(AppContext);
 
-  const photos: IImage[] = images.map((photo: IPhoto) => ({
-    id: photo.id,
-    title: photo.title,
-    src: `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_w.jpg`,
-    largeSrc: `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_b.jpg`,
+  const photos: IPhoto[] = images.map((image: IImage) => ({
+    id: image.id,
+    title: image.title,
+    src: `https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_w.jpg`,
+    largeSrc: `https://live.staticflickr.com/${image.server}/${image.id}_${image.secret}_b.jpg`,
   }));
 
-  const preloadImage = (src) => {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.src = src;
-      img.onload = resolve;
-      img.onerror = reject;
-    });
-  };
-
-
-  useEffect(() => {
-    const preload = async () => {
-      const promises = photos.map((photo) => preloadImage(photo.src));
-      await Promise.all(promises);
-    };
-
-    preload();
-  }, [photos]);
-
-
   return (
-    <div>
       <div className="list">
-        {photos.map((image: IImage) => (
-          <div className="list__element" key={image.id}>
+        {photos.map((photo: IPhoto) => (
+          <div className="list__element" key={photo.id}>
             <ImageCard
-              id={image.id}
-              title={image.title}
-              src={image.src}
+              id={photo.id}
+              title={photo.title}
+              src={photo.src}
             />
           </div>
         ))}
       </div>
-    </div>
   );
 };
 

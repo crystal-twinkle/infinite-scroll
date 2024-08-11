@@ -4,11 +4,11 @@ import React, {
   useState,
   useMemo,
 } from 'react';
-import {IPhoto} from '../models/api';
+import {IImage} from '../models/api';
 
 export interface IAppContext {
-  images: IPhoto[];
-  setImages: React.Dispatch<React.SetStateAction<IPhoto[]>>;
+  images: IImage[];
+  setImages: React.Dispatch<React.SetStateAction<IImage[]>>;
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>
 }
@@ -17,7 +17,7 @@ export const AppContext = createContext<IAppContext>(null!);
 
 const AppProvider = ({ children }: PropsWithChildren) => {
 
-  const [images, setImages] = useState<IPhoto[]>([]);
+  const [images, setImages] = useState<IImage[]>([]);
   const [page, setPage] = useState(1);
 
   const value = useMemo(
