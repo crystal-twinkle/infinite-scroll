@@ -2,6 +2,8 @@ import {useContext, useEffect, useRef, useState} from 'react';
 import '../styles/ImageCard.scss';
 import {AppContext} from '../contexts/app-context';
 import {IPhoto} from '../models/common';
+import {RouterPage} from '../router';
+import {Link} from 'react-router-dom';
 
 interface IImageCardProps {
   photo: {
@@ -14,7 +16,7 @@ interface IImageCardProps {
 
 const ImageCard = ({photo}: IImageCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const {favorites, setFavorites} = useContext(AppContext);
+  const {favorites, setFavorites, setPhotoId} = useContext(AppContext);
   const divRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -55,6 +57,10 @@ const ImageCard = ({photo}: IImageCardProps) => {
     });
   };
 
+  const handleDetail = (id: string) => {
+    setPhotoId(id);
+  };
+
   return (
     <div
       data-testid="image"
@@ -82,6 +88,11 @@ const ImageCard = ({photo}: IImageCardProps) => {
                   {favorites.some((fav) => fav.id === photo.id)
                     ? 'Unfavorite'
                     : 'Favorite'}
+                </button>
+                <button onClick={() => handleDetail(photo.id)}>
+                  <Link to={`${RouterPage.PHOTO_DETAIL.replace(':photoId', photo.id)}`}>
+                    Detail
+                  </Link>
                 </button>
               </div>
             </figcaption>

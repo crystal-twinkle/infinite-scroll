@@ -13,14 +13,14 @@ function MainPage() {
   const fetch = useCallback(async () => {
       if (isFetching.current) return;
 
-      isFetching.current = true;
-      setIsLoading(true);
-      setError(false);
+      isFetching.current = true
 
       try {
         const data = await FlickrApi.getData(page);
         setImages(prev => [...prev, ...data.photos.photo]);
         setPage(prevPage => prevPage + 1);
+        setIsLoading(true);
+        setError(false);
       } catch (error) {
         setError(true);
       } finally {
@@ -51,8 +51,7 @@ function MainPage() {
 
   return (
     <div className="main-page">
-      <PostList/>
-      {isLoading && <Loading/>}
+      {isLoading ? <Loading/> : <PostList/>}
       {error && <p>Error fetching data.</p>}
     </div>
   );

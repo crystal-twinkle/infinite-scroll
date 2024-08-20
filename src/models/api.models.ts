@@ -4,7 +4,7 @@ export interface IImage {
   secret: string;
   server: string;
   title: string;
-  url_m?:string;
+  url_m?: string;
 }
 
 export interface IData {
@@ -16,4 +16,14 @@ export interface IData {
     total: number;
   };
   stat: string;
+}
+
+export interface IPhotoInfo {
+  photo: {
+    owner: string;
+    secret: string;
+    server: string;
+    id: string;
+    title: { _content: string }
+  }
 }
