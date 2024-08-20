@@ -77,10 +77,11 @@ const ImageCard = ({photo}: IImageCardProps) => {
           >
           </div>
 
-          {isHovered && (
+          {/*{isHovered && (*/}
             <figcaption className="image-overlay">
               <div className="image-hover">
                 <p className="image__title text-right">{photo.title}</p>
+                <div className='button-container'>
                 <button
                   className="btn-favorite"
                   onClick={() => handleFavorite(photo)}
@@ -89,14 +90,12 @@ const ImageCard = ({photo}: IImageCardProps) => {
                     ? 'Unfavorite'
                     : 'Favorite'}
                 </button>
-                <button onClick={() => handleDetail(photo.id)}>
-                  <Link to={`${RouterPage.PHOTO_DETAIL.replace(':photoId', photo.id)}`}>
-                    Detail
+                  <Link className="btn-detail" to={`${RouterPage.PHOTO_DETAIL.replace(':photoId', photo.id)}`} onClick={() => handleDetail(photo.id)}>
                   </Link>
-                </button>
+              </div>
               </div>
             </figcaption>
-          )}
+          {/*)}*/}
         </div>
       </figure>
 

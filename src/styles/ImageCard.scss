@@ -39,6 +39,12 @@
     margin: auto;
   }
 
+}
+
+.button-container {
+  @include flex-center;
+  gap: 1rem;
+
   .btn-favorite {
     background-color: transparent;
     color: $primary-color;
@@ -50,6 +56,16 @@
     text-shadow: -1px -1px 0 lighten($primary-color, 9.5%);
   }
 
+  .btn-detail {
+    background-image: url("../assets/eye-tracking.svg");
+    background-color: rgba(255, 255, 255, 0.93);
+    display: block;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
 }
 
 @keyframes fade {

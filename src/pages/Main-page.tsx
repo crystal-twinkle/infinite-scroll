@@ -51,7 +51,8 @@ function MainPage() {
 
   return (
     <div className="main-page">
-      {isLoading ? <Loading/> : <PostList/>}
+      {isLoading && <Loading/>}
+      <PostList/>
       {error && <p>Error fetching data.</p>}
     </div>
   );
